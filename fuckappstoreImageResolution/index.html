@@ -63,6 +63,25 @@
     .sizes {
       margin-top: 18px;
       display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .size-group {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .size-group h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: rgba(31, 27, 22, 0.9);
+    }
+
+    .size-grid {
+      display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
@@ -147,20 +166,34 @@
 
     @media (max-width: 740px) {
       .card { padding: 18px; border-radius: 18px; }
-      .sizes { grid-template-columns: 1fr; }
+      .size-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <main class="card">
     <h1>截图尺寸一键转换</h1>
-    <p>选择目标尺寸后，直接把图片拖进来（或点击区域选择文件）。上传后会自动转换并自动下载。</p>
+    <p>选择目标尺寸后，直接把图片拖进来（或点击区域选择文件）。上传后会自动转换并自动下载。支持 iPhone 与 iPad 规格。</p>
 
     <section class="sizes" id="sizeOptions">
-      <label><input type="radio" name="size" value="1242x2688" checked />1242 x 2688</label>
-      <label><input type="radio" name="size" value="2688x1242" />2688 x 1242</label>
-      <label><input type="radio" name="size" value="1284x2778" />1284 x 2778</label>
-      <label><input type="radio" name="size" value="2778x1284" />2778 x 1284</label>
+      <div class="size-group">
+        <h3>iPhone</h3>
+        <div class="size-grid">
+          <label><input type="radio" name="size" value="1242x2688" />1242 x 2688</label>
+          <label><input type="radio" name="size" value="2688x1242" />2688 x 1242</label>
+          <label><input type="radio" name="size" value="1284x2778" />1284 x 2778</label>
+          <label><input type="radio" name="size" value="2778x1284" />2778 x 1284</label>
+        </div>
+      </div>
+      <div class="size-group">
+        <h3>iPad 12.9 英寸 / 13 英寸</h3>
+        <div class="size-grid">
+          <label><input type="radio" name="size" value="2064x2752" checked />2064 x 2752</label>
+          <label><input type="radio" name="size" value="2752x2064" />2752 x 2064</label>
+          <label><input type="radio" name="size" value="2048x2732" />2048 x 2732</label>
+          <label><input type="radio" name="size" value="2732x2048" />2732 x 2048</label>
+        </div>
+      </div>
     </section>
 
     <label class="dropzone" id="dropzone" for="picker" aria-label="拖拽图片到这里">
@@ -168,7 +201,7 @@
       <div>
         <strong>拖拽图片到这里</strong><br />
         或点击这里选择图片
-        <div class="hint">支持批量处理，默认使用居中裁切（不拉伸变形）</div>
+        <div class="hint">支持批量处理，默认使用等比缩放并填充留边（不拉伸、不裁剪）。iPad 12.9/13 英寸可上传最多 3 个 App 预览和 10 张截屏。</div>
       </div>
     </label>
 
@@ -216,7 +249,8 @@
       canvas.height = targetH;
       const ctx = canvas.getContext('2d');
 
-      const scale = Math.max(targetW / img.width, targetH / img.height);
+      // Use "contain" strategy so the full image is always visible.
+      const scale = Math.min(targetW / img.width, targetH / img.height);
       const drawW = img.width * scale;
       const drawH = img.height * scale;
       const dx = (targetW - drawW) / 2;
