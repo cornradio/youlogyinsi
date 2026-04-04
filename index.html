@@ -3,93 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>隐私政策 - Youlog</title>
+    <title>隐私政策导航</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
+        :root {
+            --bg: #f3f6fa;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --accent: #1f6feb;
+            --border: #e5e7eb;
         }
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #eef4ff 0%, var(--bg) 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        .wrap {
+            max-width: 920px;
+            margin: 0 auto;
         }
         h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
+            margin: 0 0 8px;
+            font-size: 30px;
         }
-        h2 {
-            color: #34495e;
-            margin-top: 30px;
-            margin-bottom: 15px;
+        .subtitle {
+            margin: 0 0 24px;
+            color: var(--muted);
         }
-        p {
-            margin-bottom: 15px;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
         }
-        .date {
-            color: #7f8c8d;
-            text-align: center;
-            margin-bottom: 30px;
+        .card {
+            display: block;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 4px 10px rgba(31, 111, 235, 0.08);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
         }
-        .contact {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px rgba(31, 111, 235, 0.14);
         }
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #7f8c8d;
+        .card h2 {
+            margin: 0 0 8px;
+            font-size: 22px;
+            color: #0b4dbb;
+        }
+        .card p {
+            margin: 0;
+            color: var(--muted);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>隐私政策</h1>
-        <div class="date">生效日期： 2025-03-30</div>
-
-        <p>感谢您使用 Youlog（以下简称"本应用"）。我们非常重视您的隐私，并希望您了解本应用如何处理您的个人数据。</p>
-
-        <h2>1. 我们收集的信息</h2>
-        <p>本应用不会收集、存储或上传任何您的个人数据。所有照片及相关数据均存储在您的设备本地，我们不会访问、传输或存储您的数据到任何服务器。</p>
-
-        <h2>2. 数据的存储与使用</h2>
-        <p>所有拍摄的照片和相关数据均保存在您的设备本地。</p>
-        <p>我们不会访问、共享或存储您的任何数据。</p>
-        <p>用户可以自行选择是否分享照片，本应用不会自动或强制上传任何数据。</p>
-
-        <h2>3. 权限使用说明</h2>
-        <p>本应用可能会请求以下权限，以提供完整的功能：</p>
-        <ul>
-            <li>相机权限：用于拍摄照片。</li>
-            <li>存储权限（如适用）：用于保存照片到您的设备。</li>
-        </ul>
-
-        <h2>4. 数据共享</h2>
-        <p>由于所有数据均存储在本地，我们不会与任何第三方共享您的个人数据。您可以自行决定是否通过其他应用（如社交媒体、消息应用）手动分享您的照片。</p>
-
-        <h2>5. 未成年人隐私保护</h2>
-        <p>本应用适用于所有用户，我们不会收集任何个人数据，因此也不会存储或处理未成年人的任何信息。</p>
-
-        <h2>6. 变更隐私政策</h2>
-        <p>如果我们的隐私政策有任何变更，我们会在本页面更新最新版本。请定期查看，以了解最新政策。</p>
-
-        <div class="contact">
-            <h2>7. 联系我们</h2>
-            <p>如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
-            <p>support@cornradio.org</p>
-        </div>
-
-        <div class="footer">
-            <p>Youlog 团队</p>
+    <div class="wrap">
+        <h1>隐私政策导航</h1>
+        <p class="subtitle">快速进入各应用隐私政策页面</p>
+        <div class="grid">
+            <a class="card" href="./Youlog-privacy/index.html">
+                <h2>Youlog</h2>
+                <p>查看 Youlog 隐私政策</p>
+            </a>
+            <a class="card" href="./Jarvis-privacy/index.html">
+                <h2>Jarvis</h2>
+                <p>查看 Jarvis 隐私政策</p>
+            </a>
+            <a class="card" href="./fuckappstoreImageResolution/index.html">
+                <h2>fuckappstoreImageResolution</h2>
+                <p>查看 fuckappstoreImageResolution 页面</p>
+            </a>
         </div>
     </div>
 </body>
-</html> 
+</html>

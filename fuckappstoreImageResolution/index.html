@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>截图尺寸转换器</title>
+  <style>
+    :root {
+      --bg-1: #f7efe5;
+      --bg-2: #d9f0ff;
+      --ink: #1f1b16;
+      --panel: rgba(255, 255, 255, 0.82);
+      --accent: #136f63;
+      --accent-2: #0f4c81;
+      --border: rgba(31, 27, 22, 0.14);
+      --shadow: 0 14px 44px rgba(22, 27, 34, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 16% 12%, rgba(19, 111, 99, 0.18), transparent 36%),
+        radial-gradient(circle at 88% 82%, rgba(15, 76, 129, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(920px, 100%);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      padding: 28px;
+      animation: rise 420ms ease;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(22px, 4vw, 34px);
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.55;
+      color: rgba(31, 27, 22, 0.82);
+    }
+
+    .sizes {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .sizes label {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.78);
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease;
+      font-size: 15px;
+    }
+
+    .sizes label:hover {
+      transform: translateY(-1px);
+      border-color: rgba(19, 111, 99, 0.45);
+    }
+
+    .dropzone {
+      margin-top: 16px;
+      border: 2px dashed rgba(15, 76, 129, 0.35);
+      border-radius: 18px;
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 22px;
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.8));
+      transition: border-color 160ms ease, background-color 160ms ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .dropzone.dragover {
+      border-color: var(--accent);
+      background:
+        linear-gradient(160deg, rgba(230, 255, 245, 0.86), rgba(221, 242, 255, 0.9));
+    }
+
+    .hint {
+      margin-top: 12px;
+      font-size: 13px;
+      color: rgba(31, 27, 22, 0.74);
+    }
+
+    .status {
+      margin-top: 12px;
+      min-height: 22px;
+      font-size: 14px;
+      color: #0d553f;
+      font-weight: 600;
+    }
+
+    .status.error { color: #922; }
+
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 160ms ease, filter 160ms ease;
+    }
+
+    button:hover { transform: translateY(-1px); filter: brightness(1.03); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    @media (max-width: 740px) {
+      .card { padding: 18px; border-radius: 18px; }
+      .sizes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>截图尺寸一键转换</h1>
+    <p>选择目标尺寸后，直接把图片拖进来（或点击区域选择文件）。上传后会自动转换并自动下载。</p>
+
+    <section class="sizes" id="sizeOptions">
+      <label><input type="radio" name="size" value="1242x2688" checked />1242 x 2688</label>
+      <label><input type="radio" name="size" value="2688x1242" />2688 x 1242</label>
+      <label><input type="radio" name="size" value="1284x2778" />1284 x 2778</label>
+      <label><input type="radio" name="size" value="2778x1284" />2778 x 1284</label>
+    </section>
+
+    <label class="dropzone" id="dropzone" for="picker" aria-label="拖拽图片到这里">
+      <input id="picker" type="file" accept="image/*" multiple hidden />
+      <div>
+        <strong>拖拽图片到这里</strong><br />
+        或点击这里选择图片
+        <div class="hint">支持批量处理，默认使用居中裁切（不拉伸变形）</div>
+      </div>
+    </label>
+
+    <div class="actions">
+      <button id="downloadAllBtn" disabled>再次下载最近结果</button>
+    </div>
+
+    <div class="status" id="status"></div>
+  </main>
+
+  <script>
+    const dropzone = document.getElementById('dropzone');
+    const picker = document.getElementById('picker');
+    const statusNode = document.getElementById('status');
+    const downloadAllBtn = document.getElementById('downloadAllBtn');
+
+    let recentBlobs = [];
+
+    const getTargetSize = () => {
+      const picked = document.querySelector('input[name="size"]:checked').value;
+      const [w, h] = picked.split('x').map(Number);
+      return { w, h, label: picked };
+    };
+
+    const setStatus = (text, isError = false) => {
+      statusNode.textContent = text;
+      statusNode.classList.toggle('error', isError);
+    };
+
+    const fileToImage = (file) => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error('图片读取失败'));
+        img.src = reader.result;
+      };
+      reader.onerror = () => reject(new Error('文件读取失败'));
+      reader.readAsDataURL(file);
+    });
+
+    const renderToCanvas = (img, targetW, targetH) => {
+      const canvas = document.createElement('canvas');
+      canvas.width = targetW;
+      canvas.height = targetH;
+      const ctx = canvas.getContext('2d');
+
+      const scale = Math.max(targetW / img.width, targetH / img.height);
+      const drawW = img.width * scale;
+      const drawH = img.height * scale;
+      const dx = (targetW - drawW) / 2;
+      const dy = (targetH - drawH) / 2;
+
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, targetW, targetH);
+      ctx.drawImage(img, dx, dy, drawW, drawH);
+      return canvas;
+    };
+
+    const canvasToBlob = (canvas) => new Promise((resolve, reject) => {
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          reject(new Error('导出失败'));
+          return;
+        }
+        resolve(blob);
+      }, 'image/png');
+    });
+
+    const downloadBlob = (blob, filename) => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1200);
+    };
+
+    const buildName = (original, sizeLabel, index = null) => {
+      const dot = original.lastIndexOf('.');
+      const base = dot > 0 ? original.slice(0, dot) : original;
+      const serial = index !== null ? `_${String(index + 1).padStart(2, '0')}` : '';
+      return `${base}_${sizeLabel}${serial}.png`;
+    };
+
+    const processFiles = async (fileList) => {
+      const files = Array.from(fileList).filter((f) => f.type.startsWith('image/'));
+      if (files.length === 0) {
+        setStatus('未检测到图片文件', true);
+        return;
+      }
+
+      const { w, h, label } = getTargetSize();
+      setStatus(`处理中：${files.length} 张 -> ${label} ...`);
+
+      try {
+        const blobs = [];
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const img = await fileToImage(file);
+          const canvas = renderToCanvas(img, w, h);
+          const blob = await canvasToBlob(canvas);
+          const name = buildName(file.name, label, files.length > 1 ? i : null);
+          blobs.push({ blob, name });
+          downloadBlob(blob, name);
+        }
+
+        recentBlobs = blobs;
+        downloadAllBtn.disabled = false;
+        setStatus(`完成：已自动下载 ${blobs.length} 张 (${label})`);
+      } catch (err) {
+        setStatus(`处理失败：${err.message || err}`, true);
+      }
+    };
+
+    picker.addEventListener('change', (e) => processFiles(e.target.files));
+
+    ['dragenter', 'dragover'].forEach((evt) => {
+      dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.add('dragover');
+      });
+    });
+
+    ['dragleave', 'drop'].forEach((evt) => {
+      dropzone.addEventListener(evt, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropzone.classList.remove('dragover');
+      });
+    });
+
+    dropzone.addEventListener('drop', (e) => processFiles(e.dataTransfer.files));
+
+    downloadAllBtn.addEventListener('click', () => {
+      if (recentBlobs.length === 0) return;
+      for (const item of recentBlobs) {
+        downloadBlob(item.blob, item.name);
+      }
+      setStatus(`已重新下载最近的 ${recentBlobs.length} 张图片`);
+    });
+  </script>
+</body>
+</html>
