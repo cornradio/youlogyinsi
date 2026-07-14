@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebClip 隐私政策</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            max-width: 720px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #333;
+            background: #fff;
+        }
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 0.2em;
+        }
+        .dates {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 2em;
+        }
+        h3 {
+            font-size: 1.1em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            color: #111;
+        }
+        p, li {
+            font-size: 0.95em;
+        }
+        ul {
+            padding-left: 1.2em;
+        }
+        li {
+            margin-bottom: 0.4em;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 2.5em;
+            padding-top: 1.5em;
+            border-top: 1px solid #eee;
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>隐私政策 (Privacy Policy)</h1>
+    <div class="dates">发布日期：2026年7月14日<br>生效日期：2026年7月14日</div>
+
+    <h3>1. 概述</h3>
+    <p>WebClip（以下简称"本应用"）是一款用于管理和同步文本笔记与图片的工具类应用，需配合用户自行部署的 WebClipboard 服务端使用。我们深知个人隐私的重要性，并承诺采取严格的措施保护您的数据安全。本隐私政策旨在说明我们在您使用本应用时如何处理相关信息。</p>
+
+    <h3>2. 数据采集与使用</h3>
+    <p>WebClip 坚持"隐私优先"的原则，我们在设计上尽可能避免收集您的个人数据：</p>
+    <ul>
+        <li><strong>自托管服务器通信</strong>：本应用的核心功能（文本同步、图片上传）基于您自行部署的 WebClipboard 服务器。所有数据仅在您的移动设备与您自己的服务器之间直接传输，不经过我们的服务器，我们也不会拦截或存储这些数据内容。</li>
+        <li><strong>个人身份信息</strong>：我们不要求用户注册账号，因此不会收集您的姓名、手机号、电子邮件或任何社交媒体信息。</li>
+        <li><strong>服务器地址</strong>：您配置的 WebClipboard 服务器 URL 仅保存在您的设备本地（UserDefaults），不会上传至任何远程服务器。</li>
+        <li><strong>本地模式</strong>：本应用支持纯本地模式，在此模式下所有数据仅存储在您的设备中，不进行任何网络通信。</li>
+    </ul>
+
+    <h3>3. Siri 与快捷指令 (Siri Shortcuts)</h3>
+    <p>本应用支持通过 Siri 语音指令或快捷指令进行自动化操作（如快速打开常用笔记）：</p>
+    <ul>
+        <li>当您使用 Siri 调用 WebClip 时，语音识别过程由 iOS 系统处理。</li>
+        <li>本应用仅接收系统分发的特定指令触发信号，不访问您的声音样本或原始音频数据。</li>
+    </ul>
+
+    <h3>4. 第三方服务与插件</h3>
+    <p>本应用不包含任何第三方广告 SDK、追踪插件或分析工具（如 Google Analytics 或 Facebook SDK）。我们不会为了营销目的将您的数据共享给任何第三方。</p>
+
+    <h3>5. 数据安全</h3>
+    <ul>
+        <li><strong>网络通信</strong>：建议您为 WebClipboard 服务器配置 HTTPS 加密，以确保数据在传输过程中的安全性。</li>
+        <li><strong>本地存储</strong>：本应用在设备本地存储的数据（如笔记内容、图片、服务器地址）受 iOS 系统沙盒机制保护。</li>
+        <li><strong>服务器安全</strong>：由于数据存储在您自行部署的服务器上，建议您确保服务器的访问控制和网络安全配置，以防止未经授权的访问。</li>
+    </ul>
+
+    <h3>6. 权限说明</h3>
+    <p>为了实现核心功能，本应用可能会请求以下权限：</p>
+    <ul>
+        <li><strong>网络访问 (Network)</strong>：用于连接您的 WebClipboard 服务器进行数据同步。</li>
+        <li><strong>本地网络 (Local Network)</strong>：用于在局域网环境下发现并连接本地部署的服务器（可选）。</li>
+        <li><strong>相册 (Photo Library)</strong>：用于选择图片上传至您的服务器（仅在您主动操作时触发）。</li>
+        <li><strong>剪贴板 (Pasteboard)</strong>：用于读取和写入系统剪贴板内容。</li>
+        <li><strong>Siri</strong>：用于支持语音捷径控制（可选）。</li>
+        <li><strong>通知 (Notifications)</strong>：仅用于反馈操作执行状态（可选）。</li>
+    </ul>
+
+    <h3>7. 儿童隐私</h3>
+    <p>由于我们不收集任何个人识别信息，因此本应用不会故意收集 13 岁以下儿童的任何数据。</p>
+
+    <h3>8. 政策变更</h3>
+    <p>我们可能会不时更新本隐私政策。任何修订都会在 App Store 的本页面进行更新。建议您定期查看。</p>
+
+    <h3>9. 联系我们</h3>
+    <p>如果您对本隐私政策或 WebClip 有任何疑问，请通过以下方式联系我们：</p>
+    <ul>
+        <li>官方网站：<a href="https://cornradio.org/">https://cornradio.org/</a></li>
+        <li>项目仓库：<a href="https://github.com/cornradio/webclipboard">https://github.com/cornradio/webclipboard</a></li>
+    </ul>
+
+    <div class="footer">
+        <p>WebClip 团队</p>
+    </div>
+</body>
+</html>
