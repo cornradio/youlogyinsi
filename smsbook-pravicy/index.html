@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐私政策 - 短信记账</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.7;
+    color: #1c1c1e;
+    background: #f7f7f8;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  h1 {
+    font-size: 26px;
+    margin-bottom: 4px;
+  }
+  .meta {
+    color: #6e6e73;
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  h2 {
+    font-size: 19px;
+    margin-top: 36px;
+    margin-bottom: 8px;
+    border-left: 4px solid #007aff;
+    padding-left: 10px;
+  }
+  p, li {
+    font-size: 15.5px;
+    color: #2c2c2e;
+  }
+  ul, ol {
+    padding-left: 22px;
+  }
+  li {
+    margin-bottom: 10px;
+  }
+  strong {
+    color: #000;
+  }
+  a {
+    color: #007aff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .card {
+    background: #fff;
+    border-radius: 14px;
+    padding: 8px 24px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .note {
+    background: #fff8e6;
+    border: 1px solid #ffe0a3;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 14.5px;
+    color: #6b5200;
+    margin: 12px 0;
+  }
+  footer {
+    margin-top: 48px;
+    color: #8e8e93;
+    font-size: 13px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>隐私政策 (Privacy Policy)</h1>
+  <div class="meta">
+    发布日期：2026年7月26日 ｜ 生效日期：2026年7月26日
+  </div>
+
+  <div class="card">
+
+    <h2>1. 概述</h2>
+    <p>
+      短信记账（以下简称"本应用"）是一款 iOS 原生记账工具，用于将您通过"快捷指令"转发的银行/支付短信自动解析为消费记录（金额、商户、时间），并支持手动记账、图片备注、消费统计与 CSV 导出。本应用是<strong>纯本地优先</strong>设计：核心记账数据默认只保存在您的设备上，不需要注册账号，也没有我们自己的服务器来接收或存储您的数据。
+    </p>
+    <p>
+      本隐私政策说明本应用在您使用过程中会处理哪些信息、如何处理，以及您可以做哪些选择。
+    </p>
+
+    <h2>2. 短信内容的处理方式</h2>
+    <p>本应用<strong>没有、也无法申请读取您设备短信收件箱的权限</strong>（iOS 系统不允许第三方应用访问系统短信数据库）。短信相关功能的实现方式如下：</p>
+    <ul>
+      <li>您需要自行在系统"快捷指令"App 中创建一个"收到信息时"自动化，选择将短信文本转发给本应用的"记录短信交易"动作。</li>
+      <li>本应用<strong>只能接收到您主动配置转发过来的那一条短信文本</strong>，不会、也没有能力主动读取其他任何短信。</li>
+      <li>收到短信文本后，金额与商户信息的提取全部通过<strong>设备本地的正则匹配逻辑</strong>完成，不上传短信原文到任何服务器（DeepSeek AI 分类功能除外，见第 3 条，且该功能默认关闭）。</li>
+      <li>系统会自动判断短信是收入还是支出：识别为收入（如工资到账、转账收入、退款）的短信会被直接忽略，不会生成任何记录。</li>
+    </ul>
+
+    <h2>3. 数据采集与使用</h2>
+    <ul>
+      <li><strong>本地存储：</strong>您的消费记录（金额、商户、分类、备注、图片、原始短信文本片段）保存在设备本地的数据库中，受 iOS 系统沙盒机制保护，我们没有服务器，因此也无法接触到这些数据。</li>
+      <li><strong>个人身份信息：</strong>本应用不要求注册账号，不收集您的姓名、手机号、电子邮件等身份信息。</li>
+      <li><strong>DeepSeek AI 自动分类（可选，默认关闭）：</strong>如果您在"设置 → AI 设置"中主动填入自己的 DeepSeek API Key 并开启此功能，应用会将该笔交易的<strong>商户名称、金额以及原始短信文本</strong>发送给第三方服务 DeepSeek（platform.deepseek.com / api.deepseek.com）以获取消费分类建议。
+        <div class="note">
+          请注意：原始短信文本中可能包含银行名称、卡号后四位等信息，开启此功能后会随请求一并发送给 DeepSeek。如果您不希望短信原文离开本机，请保持"AI 自动分类"关闭 —— 关闭状态下，应用会改用完全离线的本地关键词规则进行分类，不会产生任何网络请求。DeepSeek 对这些数据的处理遵循其自身的隐私政策，与本应用无关。
+        </div>
+      </li>
+      <li><strong>DeepSeek API Key 存储：</strong>您填入的 API Key 使用 iOS Keychain 加密保存在设备本地。调用 DeepSeek 接口时，Key 会作为身份验证信息随请求发送给 DeepSeek 官方服务器，这是使用该第三方服务所必需的，除此之外不会被发送到任何其他地方。</li>
+    </ul>
+
+    <h2>4. 第三方服务</h2>
+    <p>
+      本应用不包含任何广告 SDK、用户行为追踪插件或数据分析工具（如 Google Analytics）。唯一涉及的第三方服务是您可自主选择是否开启的 <strong>DeepSeek AI 分类</strong>（见第 3 条）。我们不会出于营销目的将您的任何数据出售或分享给第三方。
+    </p>
+
+    <h2>5. 数据安全</h2>
+    <ul>
+      <li><strong>本地存储：</strong>记账数据与图片保存在设备本地的应用沙盒中，随系统数据保护机制加密。</li>
+      <li><strong>网络通信：</strong>仅在您主动开启 AI 分类功能时才会产生网络请求，且使用 HTTPS 加密传输。</li>
+      <li><strong>凭证存储：</strong>DeepSeek API Key 存储于 iOS Keychain，而非明文保存。</li>
+    </ul>
+
+    <h2>6. 权限说明</h2>
+    <p>为实现相应功能，本应用可能会请求以下权限，均为按需触发，不会在后台静默获取：</p>
+    <ul>
+      <li><strong>快捷指令 / App Intent：</strong>用于接收您通过"快捷指令"自动化转发的短信文本，仅在您主动配置该自动化后才会触发。</li>
+      <li><strong>照片（可选）：</strong>用于给某笔消费添加图片备注。使用系统 PhotosPicker 选择器，本应用只能获取您明确选中的那一张图片，不会获得完整相册的访问权限。</li>
+      <li><strong>通知（可选）：</strong>用于在单笔消费金额超过您设定的阈值时提醒您确认或编辑该记录，仅在您开启"大额提醒"后请求。</li>
+      <li><strong>网络访问（可选）：</strong>仅在您开启"AI 自动分类"并触发分类请求时使用，用于连接 DeepSeek 接口。</li>
+    </ul>
+    <p>本应用<strong>不会请求</strong>短信收件箱、通讯录、定位、麦克风等权限。</p>
+
+    <h2>7. 数据导出与删除</h2>
+    <p>
+      您可以随时在应用内将全部消费记录导出为 CSV 文件，通过系统分享面板发送到您指定的位置。您也可以随时删除任意一笔记录，或直接删除应用以清除设备本地保存的全部数据；由于我们没有服务器保存您的数据副本，删除操作是不可恢复的。
+    </p>
+
+    <h2>8. 儿童隐私</h2>
+    <p>
+      本应用不会主动收集任何个人身份信息，也没有专门面向 13 岁以下儿童设计。如果您认为儿童在未经监护人同意的情况下使用了本应用并涉及隐私问题，请通过下方方式联系我们处理。
+    </p>
+
+    <h2>9. 政策变更</h2>
+    <p>
+      我们可能会不时更新本隐私政策，修订后的版本将在此页面公布，并更新顶部的"生效日期"。建议您定期查看。
+    </p>
+
+    <h2>10. 联系我们</h2>
+    <p>
+      如果您对本隐私政策或"短信记账"应用有任何疑问，请通过以下方式联系我们：
+    </p>
+    <ul>
+      <li>使用指南与联系方式：<a href="https://cornradio.org/" target="_blank">https://cornradio.org/</a></li>
+    </ul>
+
+  </div>
+
+  <footer>
+    © 2026 短信记账. All rights reserved.
+  </footer>
+</div>
+</body>
+</html>
