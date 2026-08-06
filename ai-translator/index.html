@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI翻译与润色 隐私政策</title>
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.7;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    color: #1c1c1e;
+    background: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { color: #f2f2f7; background: #000000; }
+    .card { background: #1c1c1e; }
+    a { color: #4da3ff; }
+  }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  .meta { color: #8e8e93; font-size: 14px; margin-bottom: 32px; }
+  h2 { font-size: 20px; margin-top: 36px; border-left: 4px solid #007aff; padding-left: 10px; }
+  p, li { font-size: 16px; }
+  ul { padding-left: 22px; }
+  .card {
+    background: #646468;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+  a { color: #007aff; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  hr { border: none; border-top: 1px solid #d1d1d6; margin: 40px 0; }
+  .lang-note { font-size: 14px; color: #8e8e93; }
+</style>
+</head>
+<body>
+
+<h1>AI润色 隐私政策</h1>
+<p class="meta">生效日期 / Effective Date: 2026-08-06</p>
+
+<div class="card">
+  <strong>一句话总结：</strong>AI润色 不运营任何服务器，不收集、不上传你的任何数据。你在 App 里输入的文字，只会在你自己配置了 AI 服务商之后，从你的设备直接发送给该服务商；开发者本人接触不到这些内容。
+</div>
+
+<h2>1. 我们收集的信息</h2>
+<p>AI润色 是一个纯本地运行的工具类 App，<strong>不收集任何个人身份信息，不设账号系统，不包含广告 SDK 或数据分析 SDK</strong>。App 内产生的以下数据，全部只保存在你设备本机的 App 沙盒内，从不上传到开发者或任何第三方服务器：</p>
+<ul>
+  <li>你自定义的功能组与 Prompt 模板</li>
+  <li>你的处理历史记录（原文与 AI 生成结果）</li>
+  <li>你填写的 AI 服务商 API Key（保存在系统钥匙串 Keychain 中，采用系统级加密保护）</li>
+</ul>
+<p>卸载 App、或在设置里清空历史记录/恢复默认功能，会一并清除这些本地数据。</p>
+
+<h2>2. 第三方 AI 服务商</h2>
+<p>AI润色 支持你自行配置 OpenAI 兼容接口（例如 DeepSeek、通义千问等）或 Anthropic Claude 接口。当你使用 App 内任意"处理"功能时：</p>
+<ul>
+  <li>你输入的文字，会由你的设备<strong>直接</strong>发送给你自己配置的 AI 服务商，用于生成处理结果；</li>
+  <li>这个过程<strong>不经过开发者的任何服务器</strong>，开发者无法看到、也不会保存你发送或收到的任何内容；</li>
+  <li>该服务商如何处理、存储你发送的数据，受该服务商自己的隐私政策约束，与本政策无关。请在使用前查阅你所选服务商（如 OpenAI、Anthropic、DeepSeek 等）各自公开的隐私政策。</li>
+</ul>
+
+<h2>3. 快捷指令与 Siri</h2>
+<p>如果你在"快捷指令"App 或 Siri 中使用 AI润色 提供的操作，处理流程与上述一致：文本同样是从你的设备直接发送给你配置的 AI 服务商，开发者不会经手。</p>
+
+<h2>4. 数据安全</h2>
+<p>API Key 存储在 iOS 系统的 Keychain 中，受系统级加密与访问控制保护。App 内其他数据（功能配置、历史记录）存储在 App 私有的沙盒目录内，其他 App 无法访问。</p>
+
+<h2>5. 儿童隐私</h2>
+<p>AI润色 不面向 13 周岁以下儿童，也不会主动收集儿童的个人信息。</p>
+
+<h2>6. 政策变更</h2>
+<p>如果本政策有实质性更新，我们会在此页面更新"生效日期"并说明变更内容。建议你在更新 App 后回顾一下本页面。</p>
+
+<h2>7. 联系我们</h2>
+<p>如果你对本隐私政策有任何疑问，请通过以下方式联系我们：</p>
+<p>📧 邮箱：<a href="mailto:kasusaland@gmail.com">email</a>　<span class="lang-note"></span></p>
+
+<hr>
+
+<h2>English Summary</h2>
+<p class="lang-note">
+  AI翻译与润色 ("the App") does not operate any backend server and does not collect, transmit, or sell any personal data.
+  All data created by using the App — your custom prompt templates, your processing history, and the API key you enter —
+  is stored only locally on your device (settings/history in the app's private sandbox, API key in the iOS Keychain).
+  When you use any processing feature, the text you provide is sent <strong>directly from your device</strong> to the
+  AI provider (OpenAI-compatible endpoint or Anthropic) that you personally configure with your own API key — this never
+  passes through any server operated by the developer. That provider's handling of your data is governed by its own
+  privacy policy, not this one. The App contains no analytics SDKs, no advertising SDKs, and no account system.
+  Uninstalling the App removes all locally stored data. Contact: your-email@example.com.
+</p>
+
+</body>
+</html>
