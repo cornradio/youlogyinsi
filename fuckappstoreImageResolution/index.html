@@ -80,6 +80,12 @@
       color: rgba(31, 27, 22, 0.9);
     }
 
+    .size-note {
+      margin: -4px 0 10px;
+      font-size: 12px;
+      color: rgba(31, 27, 22, 0.62);
+    }
+
     .size-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -101,6 +107,86 @@
 
     .sizes label:hover {
       transform: translateY(-1px);
+      border-color: rgba(19, 111, 99, 0.45);
+    }
+
+    .sizes label:has(input:checked) {
+      border-color: rgba(19, 111, 99, 0.55);
+      background: rgba(230, 255, 245, 0.72);
+    }
+
+    .size-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .size-main {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .orient {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .orient.portrait {
+      color: #0d553f;
+      background: rgba(19, 111, 99, 0.14);
+    }
+
+    .orient.landscape {
+      color: #0f4c81;
+      background: rgba(15, 76, 129, 0.14);
+    }
+
+    .orient.custom {
+      color: #6b4f1d;
+      background: rgba(180, 130, 40, 0.16);
+    }
+
+    .custom-fields {
+      display: none;
+      margin-top: 10px;
+      gap: 10px;
+      align-items: end;
+      flex-wrap: wrap;
+    }
+
+    .custom-fields.show { display: flex; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 120px;
+    }
+
+    .field span {
+      font-size: 12px;
+      color: rgba(31, 27, 22, 0.68);
+    }
+
+    .field input {
+      width: 140px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .field input:focus {
+      outline: 2px solid rgba(19, 111, 99, 0.28);
       border-color: rgba(19, 111, 99, 0.45);
     }
 
@@ -167,31 +253,106 @@
     @media (max-width: 740px) {
       .card { padding: 18px; border-radius: 18px; }
       .size-grid { grid-template-columns: 1fr; }
+      .field input { width: 100%; }
+      .field { min-width: calc(50% - 5px); flex: 1; }
     }
   </style>
 </head>
 <body>
   <main class="card">
     <h1>截图尺寸一键转换</h1>
-    <p>选择目标尺寸后，直接把图片拖进来（或点击区域选择文件）。上传后会自动转换并自动下载。支持 iPhone 与 iPad 规格。</p>
+    <p>选择目标尺寸后，直接把图片拖进来（或点击区域选择文件）。上传后会自动转换并自动下载。已更新为 App Store Connect 当前 iPhone 6.1 / 6.3 英寸规格。</p>
 
     <section class="sizes" id="sizeOptions">
       <div class="size-group">
-        <h3>iPhone</h3>
+        <h3>iPhone 6.1 / 6.3 英寸（必填）</h3>
+        <p class="size-note">Dynamic Island 中屏：1179×2556、1206×2622 及对应横屏</p>
         <div class="size-grid">
-          <label><input type="radio" name="size" value="1242x2688" />1242 x 2688</label>
-          <label><input type="radio" name="size" value="2688x1242" />2688 x 1242</label>
-          <label><input type="radio" name="size" value="1284x2778" />1284 x 2778</label>
-          <label><input type="radio" name="size" value="2778x1284" />2778 x 1284</label>
+          <label>
+            <input type="radio" name="size" value="1179x2556" checked />
+            <span class="size-text">
+              <span class="size-main">1179 × 2556</span>
+              <span class="orient portrait">竖屏</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="2556x1179" />
+            <span class="size-text">
+              <span class="size-main">2556 × 1179</span>
+              <span class="orient landscape">横屏</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="1206x2622" />
+            <span class="size-text">
+              <span class="size-main">1206 × 2622</span>
+              <span class="orient portrait">竖屏</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="2622x1206" />
+            <span class="size-text">
+              <span class="size-main">2622 × 1206</span>
+              <span class="orient landscape">横屏</span>
+            </span>
+          </label>
         </div>
       </div>
+
       <div class="size-group">
         <h3>iPad 12.9 英寸 / 13 英寸</h3>
         <div class="size-grid">
-          <label><input type="radio" name="size" value="2064x2752" checked />2064 x 2752</label>
-          <label><input type="radio" name="size" value="2752x2064" />2752 x 2064</label>
-          <label><input type="radio" name="size" value="2048x2732" />2048 x 2732</label>
-          <label><input type="radio" name="size" value="2732x2048" />2732 x 2048</label>
+          <label>
+            <input type="radio" name="size" value="2064x2752" />
+            <span class="size-text">
+              <span class="size-main">2064 × 2752</span>
+              <span class="orient portrait">竖屏</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="2752x2064" />
+            <span class="size-text">
+              <span class="size-main">2752 × 2064</span>
+              <span class="orient landscape">横屏</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="2048x2732" />
+            <span class="size-text">
+              <span class="size-main">2048 × 2732</span>
+              <span class="orient portrait">竖屏</span>
+            </span>
+          </label>
+          <label>
+            <input type="radio" name="size" value="2732x2048" />
+            <span class="size-text">
+              <span class="size-main">2732 × 2048</span>
+              <span class="orient landscape">横屏</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="size-group">
+        <h3>自定义尺寸</h3>
+        <div class="size-grid">
+          <label>
+            <input type="radio" name="size" value="custom" />
+            <span class="size-text">
+              <span class="size-main">手动输入宽高</span>
+              <span class="orient custom" id="customOrientBadge">自定义</span>
+            </span>
+          </label>
+        </div>
+        <div class="custom-fields" id="customFields">
+          <label class="field">
+            <span>宽度 (px)</span>
+            <input id="customW" type="number" min="1" step="1" placeholder="例如 1206" />
+          </label>
+          <label class="field">
+            <span>高度 (px)</span>
+            <input id="customH" type="number" min="1" step="1" placeholder="例如 2622" />
+          </label>
         </div>
       </div>
     </section>
@@ -201,7 +362,7 @@
       <div>
         <strong>拖拽图片到这里</strong><br />
         或点击这里选择图片
-        <div class="hint">支持批量处理，默认使用等比缩放并填充留边（不拉伸、不裁剪）。iPad 12.9/13 英寸可上传最多 3 个 App 预览和 10 张截屏。</div>
+        <div class="hint">支持批量处理，默认使用等比缩放并填充留边（不拉伸、不裁剪）。iPhone 6.1/6.3 英寸截屏支持 1179×2556、1206×2622 及对应横屏。</div>
       </div>
     </label>
 
@@ -217,13 +378,47 @@
     const picker = document.getElementById('picker');
     const statusNode = document.getElementById('status');
     const downloadAllBtn = document.getElementById('downloadAllBtn');
+    const customFields = document.getElementById('customFields');
+    const customW = document.getElementById('customW');
+    const customH = document.getElementById('customH');
+    const customOrientBadge = document.getElementById('customOrientBadge');
 
     let recentBlobs = [];
 
+    const orientLabel = (w, h) => {
+      if (w === h) return '正方形';
+      return w > h ? '横屏' : '竖屏';
+    };
+
+    const syncCustomUi = () => {
+      const picked = document.querySelector('input[name="size"]:checked');
+      const isCustom = picked && picked.value === 'custom';
+      customFields.classList.toggle('show', isCustom);
+
+      const w = Number(customW.value);
+      const h = Number(customH.value);
+      if (Number.isInteger(w) && Number.isInteger(h) && w > 0 && h > 0) {
+        const label = orientLabel(w, h);
+        customOrientBadge.textContent = label;
+        customOrientBadge.className = 'orient ' + (label === '横屏' ? 'landscape' : label === '竖屏' ? 'portrait' : 'custom');
+      } else {
+        customOrientBadge.textContent = '自定义';
+        customOrientBadge.className = 'orient custom';
+      }
+    };
+
     const getTargetSize = () => {
       const picked = document.querySelector('input[name="size"]:checked').value;
+      if (picked === 'custom') {
+        const w = Number(customW.value);
+        const h = Number(customH.value);
+        if (!Number.isInteger(w) || !Number.isInteger(h) || w <= 0 || h <= 0) {
+          throw new Error('请先填写有效的自定义宽度和高度（正整数）');
+        }
+        return { w, h, label: `${w}x${h}`, orient: orientLabel(w, h) };
+      }
       const [w, h] = picked.split('x').map(Number);
-      return { w, h, label: picked };
+      return { w, h, label: picked, orient: orientLabel(w, h) };
     };
 
     const setStatus = (text, isError = false) => {
@@ -281,11 +476,11 @@
       setTimeout(() => URL.revokeObjectURL(url), 1200);
     };
 
-    const buildName = (original, sizeLabel, index = null) => {
+    const buildName = (original, sizeLabel, orient, index = null) => {
       const dot = original.lastIndexOf('.');
       const base = dot > 0 ? original.slice(0, dot) : original;
       const serial = index !== null ? `_${String(index + 1).padStart(2, '0')}` : '';
-      return `${base}_${sizeLabel}${serial}.png`;
+      return `${base}_${sizeLabel}_${orient}${serial}.png`;
     };
 
     const processFiles = async (fileList) => {
@@ -295,8 +490,16 @@
         return;
       }
 
-      const { w, h, label } = getTargetSize();
-      setStatus(`处理中：${files.length} 张 -> ${label} ...`);
+      let target;
+      try {
+        target = getTargetSize();
+      } catch (err) {
+        setStatus(err.message || String(err), true);
+        return;
+      }
+
+      const { w, h, label, orient } = target;
+      setStatus(`处理中：${files.length} 张 -> ${label}（${orient}）...`);
 
       try {
         const blobs = [];
@@ -305,18 +508,25 @@
           const img = await fileToImage(file);
           const canvas = renderToCanvas(img, w, h);
           const blob = await canvasToBlob(canvas);
-          const name = buildName(file.name, label, files.length > 1 ? i : null);
+          const name = buildName(file.name, label, orient, files.length > 1 ? i : null);
           blobs.push({ blob, name });
           downloadBlob(blob, name);
         }
 
         recentBlobs = blobs;
         downloadAllBtn.disabled = false;
-        setStatus(`完成：已自动下载 ${blobs.length} 张 (${label})`);
+        setStatus(`完成：已自动下载 ${blobs.length} 张 (${label} · ${orient})`);
       } catch (err) {
         setStatus(`处理失败：${err.message || err}`, true);
       }
     };
+
+    document.querySelectorAll('input[name="size"]').forEach((el) => {
+      el.addEventListener('change', syncCustomUi);
+    });
+    customW.addEventListener('input', syncCustomUi);
+    customH.addEventListener('input', syncCustomUi);
+    syncCustomUi();
 
     picker.addEventListener('change', (e) => processFiles(e.target.files));
 
